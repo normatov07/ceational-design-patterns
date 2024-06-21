@@ -36,6 +36,7 @@ class Client
 
     protected DB $db;
 
+    // And also you can inject ClientService there
     public function __construct()
     {
         $this->getDB(new MysqlFactory);

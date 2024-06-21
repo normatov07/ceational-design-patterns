@@ -8,5 +8,5 @@
 
 
 #### Describtion:
-```
-All implementation illustrate pattern's structure simply. Not specific elements. So you can implement them for your purpouse.
+
+- All implementation illustrate pattern's structure simply. Not specific elements. So you can implement them for your purpouse.

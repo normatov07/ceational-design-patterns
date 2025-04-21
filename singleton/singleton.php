@@ -3,25 +3,44 @@
 
 interface Database
 {
-
+    public static function getInstance(): self;
 }
 
 class Mysql implements Database
 {
-    protected static $conn;
+    protected static Mysql $instance;
+    private PDO $connection;
+    
 
     private function __construct()
     {
-        if (!isset(self::$conn)) {
-            self::$conn = new PDO('mysql:host=localhost;dbname=test', 'root', '');
+        if (!isset(self::$instance)) {
+            self::$instance = new Mysql();
+            self::$instance->connect();
         }
 
-        return self::$conn;
+        return self::$instance;
     }
 
-    public function connect(): void
+    public static function getInstance(): self
     {
-        $this->__construct();
+        return self::__construct();
     }
 
+    private function connect(): void
+    {
+        $this->connection = new PDO('mysql:host=localhost;dbname=test', 'root', '');
+    }
+
+}
+
+
+// Client implementation
+class Post {
+    protected Database $database;
+
+    public function __construct()
+    {       
+        $this->database = Mysql::getInstance();
+    }
 }

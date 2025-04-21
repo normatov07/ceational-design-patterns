@@ -40,7 +40,6 @@ class MercCar implements Car
     }
 }
 
-
 interface Boat
 {
     public function getPrice(): int;
@@ -65,7 +64,7 @@ class BMWBoat implements Boat
     }
     public function getSizeOfBoat(): array
     {
-        return  [];
+        return [];
     }
 }
 
@@ -85,13 +84,11 @@ class MercBoat implements Boat
     }
     public function getSizeOfBoat(): array
     {
-        return  [];
+        return [];
     }
 }
 
-
-/// abstraction implementation
-
+// abstraction implementation
 interface TransportFactory
 {
     public function createCar(): Car;
@@ -100,29 +97,27 @@ interface TransportFactory
 
 class BMWFactory implements TransportFactory
 {
-
     public function createCar(): Car
     {
-        return new BMWCar;
+        return new BMWCar();
     }
 
     public function createBoat(): Boat
     {
-        return new BMWBoat;
+        return new BMWBoat();
     }
 }
 
 class MercFactory implements TransportFactory
 {
-
     public function createCar(): Car
     {
-        return new MercCar;
+        return new MercCar();
     }
 
     public function createBoat(): Boat
     {
-        return new MercBoat;
+        return new MercBoat();
     }
 }
 
@@ -130,7 +125,6 @@ class MercFactory implements TransportFactory
 
 class ClientService
 {
-
     protected Car $car;
     protected Boat $boat;
 
@@ -153,11 +147,11 @@ class ClientConstructor
     // And also you can inject ClientService there
     public function __construct()
     {
-        $this->service = new ClientService(new MercFactory);
+        $this->service = new ClientService(new MercFactory());
     }
 
     public function printAllOutcome(): void
     {
-        print($this->service->calculateAllOutcome());
+        print $this->service->calculateAllOutcome();
     }
 }

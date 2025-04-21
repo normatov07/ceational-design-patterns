@@ -26,20 +26,18 @@ class MysqlFactory implements DBFactory
 {
     function createDB(): DB
     {
-        return new Mysql;
+        return new Mysql();
     }
 }
 
-
 class Client
 {
-
     protected DB $db;
 
     // And also you can inject ClientService there
     public function __construct()
     {
-        $this->getDB(new MysqlFactory);
+        $this->getDB(new MysqlFactory());
     }
 
     function getDB(DBFactory $factory)
